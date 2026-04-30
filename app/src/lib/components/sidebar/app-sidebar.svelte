@@ -1,39 +1,18 @@
 <script lang="ts" module>
-	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
 	import BookOpenIcon from "@lucide/svelte/icons/book-open";
 	import BotIcon from "@lucide/svelte/icons/bot";
 	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
-	import CommandIcon from "@lucide/svelte/icons/command";
 	import FrameIcon from "@lucide/svelte/icons/frame";
-	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
 	import MapIcon from "@lucide/svelte/icons/map";
 	import Settings2Icon from "@lucide/svelte/icons/settings-2";
 	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
 
-	// This is sample data.
 	const data = {
 		user: {
 			name: "shadcn",
 			email: "m@example.com",
 			avatar: "/avatars/shadcn.jpg",
 		},
-		teams: [
-			{
-				name: "Acme Inc",
-				logo: GalleryVerticalEndIcon,
-				plan: "Enterprise",
-			},
-			{
-				name: "Acme Corp.",
-				logo: AudioWaveformIcon,
-				plan: "Startup",
-			},
-			{
-				name: "Evil Corp.",
-				logo: CommandIcon,
-				plan: "Free",
-			},
-		],
 		navMain: [
 			{
 				title: "Playground",
@@ -145,8 +124,8 @@
 	import NavMain from "./nav-main.svelte";
 	import NavProjects from "./nav-projects.svelte";
 	import NavUser from "./nav-user.svelte";
-	import TeamSwitcher from "./team-switcher.svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
+	import { useSidebar } from "$lib/components/ui/sidebar/context.svelte.js";
 	import type { ComponentProps } from "svelte";
 
 	let {
@@ -154,11 +133,22 @@
 		collapsible = "icon",
 		...restProps
 	}: ComponentProps<typeof Sidebar.Root> = $props();
+
+	const sidebar = useSidebar();
 </script>
 
 <Sidebar.Root bind:ref {collapsible} {...restProps}>
 	<Sidebar.Header>
-		<TeamSwitcher teams={data.teams} />
+		<button
+			onclick={() => sidebar.toggle()}
+			class="flex items-center gap-2 px-2 py-1 rounded-md hover:bg-sidebar-accent transition-colors w-full text-left cursor-pointer"
+		>
+			<img src="/logo/logo-csfx.svg" alt="CSFX" class="size-6 invert dark:invert-0 shrink-0" />
+			<div class="flex flex-col leading-tight group-data-[collapsible=icon]:hidden">
+				<span class="font-semibold text-sm tracking-wide">CSFX</span>
+				<span class="text-muted-foreground text-xs">Hypervisor v0.1</span>
+			</div>
+		</button>
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<NavMain items={data.navMain} />

@@ -3,6 +3,8 @@
 
 	let {
 		items,
+		label = "Platform",
+		class: className = "",
 	}: {
 		items: {
 			title: string;
@@ -11,11 +13,15 @@
 			icon?: any;
 			isActive?: boolean;
 		}[];
+		label?: string;
+		class?: string;
 	} = $props();
 </script>
 
-<Sidebar.Group>
-	<Sidebar.GroupLabel>Platform</Sidebar.GroupLabel>
+<Sidebar.Group class={className}>
+	{#if label}
+		<Sidebar.GroupLabel class="group-data-[collapsible=icon]:hidden">{label}</Sidebar.GroupLabel>
+	{/if}
 	<Sidebar.Menu>
 		{#each items as item (item.title)}
 			<Sidebar.MenuItem>

@@ -12,31 +12,37 @@
     <!-- Left: Login Form -->
     <div class="flex w-full lg:w-1/2 items-center justify-center p-8">
         <div class="w-full max-w-sm">
-            <h1 class="text-2xl font-bold mb-2">Welcome Back!</h1>
-            <p class="text-muted-foreground mb-6">
-                Please login to your account
-            </p>
+            <img
+                src="/logo/logo-csfx.svg"
+                alt="CSFX Logo"
+                class="size-20 mb-6 rounded-md p-2 invert dark:invert-0"
+            />
+            <h1 class="text-2xl font-font-light mb-10">Sign in</h1>
 
             <div class="flex flex-col gap-1 mb-4">
-                <Label for="email">Email Address</Label>
+                <Label for="email" class="text-xs font-bold mb-1"
+                    >Email Address</Label
+                >
                 <div class="relative">
                     <Mail
-                        class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 text-color-foreground size-4"
                     />
                     <Input
                         id="email"
                         type="email"
                         placeholder="you@example.com"
-                        class="pl-9"
+                        class="pl-9 pt-2 pb-2"
                     />
                 </div>
             </div>
 
             <div class="flex flex-col gap-1 mb-4">
-                <Label for="password">Password</Label>
+                <Label for="password" class="text-xs font-bold mb-1"
+                    >Password</Label
+                >
                 <div class="relative">
                     <Lock
-                        class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground size-4"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-color-foreground"
                     />
                     <Input
                         id="password"
@@ -54,7 +60,7 @@
                 >
             </div>
 
-            <Button class="w-full">Login</Button>
+            <Button class="w-full">Sign in</Button>
         </div>
     </div>
 
